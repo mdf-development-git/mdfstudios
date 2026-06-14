@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MDF Studios - Modding Excellence</title>
+    <title>MDF Studios - Professional Gaming Studio</title>
     <style>
 * {
     margin: 0;
@@ -12,15 +12,16 @@
 }
 
 :root {
-    --primary-color: #e8e8e8;
-    --secondary-color: #0a0a0a;
+    --primary-color: #ffffff;
+    --secondary-color: #000000;
     --accent-color: #1a1a1a;
     --text-color: #ffffff;
+    --text-muted: #cccccc;
     --border-color: #333333;
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--secondary-color);
     color: var(--text-color);
     line-height: 1.6;
@@ -53,33 +54,27 @@ body {
 .logo-wrapper {
     position: relative;
     width: 100%;
-    height: 200px;
+    height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .gta-logo {
-    font-family: 'Arial Black', sans-serif;
-    font-size: 6rem;
-    font-weight: 900;
-    color: #ffffff;
-    letter-spacing: 8px;
-    text-shadow: 
-        2px 2px 0px rgba(0, 0, 0, 0.8),
-        4px 4px 0px rgba(0, 0, 0, 0.6);
-    animation: gtaLogoScale 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    max-width: 600px;
+    height: auto;
+    animation: logoScale 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
     transform-origin: center;
     opacity: 1;
 }
 
-@keyframes gtaLogoScale {
+@keyframes logoScale {
     0% {
-        transform: scale(0.2);
+        transform: scale(0.1);
         opacity: 0;
     }
     60% {
-        transform: scale(1.15);
+        transform: scale(1.1);
         opacity: 1;
     }
     100% {
@@ -105,8 +100,8 @@ body {
 
 /* ========== NAVIGATION ========== */
 .navbar {
-    background-color: rgba(10, 10, 10, 0.98);
-    border-bottom: 2px solid var(--primary-color);
+    background-color: rgba(0, 0, 0, 0.98);
+    border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -114,26 +109,37 @@ body {
 }
 
 .nav-container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 1rem 2rem;
+    padding: 1.5rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.nav-logo {
-    font-family: 'Arial Black', sans-serif;
-    font-size: 1.2rem;
+.nav-logo-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-logo-img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-logo-text {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
     color: var(--primary-color);
-    letter-spacing: 2px;
-    font-weight: 900;
 }
 
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 3rem;
 }
 
 .nav-link {
@@ -141,10 +147,11 @@ body {
     text-decoration: none;
     transition: color 0.3s ease;
     font-weight: 500;
+    font-size: 1rem;
 }
 
 .nav-link:hover {
-    color: var(--primary-color);
+    color: var(--text-muted);
 }
 
 .hamburger {
@@ -155,9 +162,9 @@ body {
 
 .hamburger span {
     width: 25px;
-    height: 3px;
+    height: 2px;
     background-color: var(--text-color);
-    margin: 5px 0;
+    margin: 6px 0;
     transition: 0.3s;
 }
 
@@ -169,7 +176,7 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    background: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
 }
 
 .hero-content {
@@ -180,31 +187,35 @@ body {
 }
 
 .hero-content h2 {
-    font-family: 'Arial Black', sans-serif;
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
     color: var(--primary-color);
     letter-spacing: 2px;
+    font-weight: 700;
 }
 
 .hero-content p {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    color: #cccccc;
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .cta-button {
     display: inline-block;
-    padding: 1rem 2.5rem;
+    padding: 1rem 3rem;
     background: var(--primary-color);
     color: #000000;
     text-decoration: none;
     border: 2px solid var(--primary-color);
     cursor: pointer;
-    font-weight: bold;
-    font-size: 1.1rem;
+    font-weight: 600;
+    font-size: 1rem;
     transition: all 0.3s ease;
-    border-radius: 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .cta-button:hover {
@@ -224,26 +235,124 @@ body {
     }
 }
 
+/* ========== PROJECTS SECTION ========== */
+.projects-section {
+    padding: 6rem 2rem;
+    background-color: #000000;
+    border-top: 1px solid var(--border-color);
+}
+
+.section-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+}
+
+.section-header h2 {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.section-header p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+.projects-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    border: 1px solid var(--border-color);
+    padding: 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.project-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+}
+
+.project-card h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+}
+
+.project-card p {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.project-meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.project-tag {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    border: 1px solid var(--border-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.project-button {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.project-button:hover {
+    background: var(--primary-color);
+    color: #000000;
+}
+
 /* ========== GALLERY SECTION ========== */
 .gallery-section {
-    padding: 4rem 2rem;
-    background-color: #0a0a0a;
-    border-top: 2px solid var(--primary-color);
-    border-bottom: 2px solid var(--primary-color);
+    padding: 6rem 2rem;
+    background-color: #000000;
+    border-top: 1px solid var(--border-color);
 }
 
 .gallery-section h2 {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin-bottom: 0.5rem;
     color: var(--primary-color);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
+    font-weight: 700;
 }
 
 .section-subtitle {
     text-align: center;
-    color: #888888;
+    color: var(--text-muted);
     margin-bottom: 3rem;
+    font-size: 1.1rem;
 }
 
 .gallery-row {
@@ -253,19 +362,19 @@ body {
 
 .gallery-track {
     display: flex;
-    gap: 1.5rem;
-    animation: scrollLeft 25s linear infinite;
+    gap: 2rem;
+    animation: scrollLeft 30s linear infinite;
 }
 
 .gallery-row.right-to-left .gallery-track {
-    animation: scrollRight 25s linear infinite;
+    animation: scrollRight 30s linear infinite;
 }
 
 .gallery-item {
-    min-width: 300px;
-    height: 250px;
+    min-width: 320px;
+    height: 280px;
     background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-    border: 2px solid var(--primary-color);
+    border: 1px solid var(--border-color);
     overflow: hidden;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -274,7 +383,8 @@ body {
 
 .gallery-item:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(232, 232, 232, 0.3);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
 .gallery-item img {
@@ -289,7 +399,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -304,7 +414,7 @@ body {
 .gallery-item-overlay p {
     color: var(--primary-color);
     font-size: 1.2rem;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 @keyframes scrollLeft {
@@ -325,117 +435,20 @@ body {
     }
 }
 
-/* ========== MODPACK SECTION ========== */
-.modpack-section {
-    padding: 4rem 2rem;
-    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
-}
-
-.modpack-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-}
-
-.modpack-content h2 {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-    letter-spacing: 2px;
-}
-
-.modpack-content p {
-    color: #cccccc;
-    margin-bottom: 2rem;
-    font-size: 1.1rem;
-}
-
-.modpack-features {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.feature-card {
-    background-color: #1a1a1a;
-    padding: 1.5rem;
-    border: 2px solid var(--primary-color);
-    transition: all 0.3s ease;
-}
-
-.feature-card:hover {
-    box-shadow: 0 0 20px rgba(232, 232, 232, 0.2);
-    transform: translateY(-5px);
-}
-
-.feature-card h3 {
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-}
-
-.feature-card p {
-    color: #999999;
-    font-size: 0.95rem;
-}
-
-.download-section {
-    margin-top: 2rem;
-}
-
-.download-button {
-    display: inline-block;
-    padding: 1rem 2rem;
-    margin-right: 1rem;
-    background: var(--primary-color);
-    color: #000000;
-    text-decoration: none;
-    border: 2px solid var(--primary-color);
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-}
-
-.download-button:hover {
-    transform: scale(1.05);
-    background: transparent;
-    color: var(--primary-color);
-}
-
-.version-info {
-    color: #666666;
-    font-size: 0.9rem;
-    margin-top: 1rem;
-}
-
-.modpack-visual {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.modpack-icon {
-    font-size: 15rem;
-    opacity: 0.8;
-}
-
 /* ========== ABOUT SECTION ========== */
 .about-section {
-    padding: 4rem 2rem;
-    background-color: #1a1a1a;
-    border-top: 2px solid var(--primary-color);
+    padding: 6rem 2rem;
+    background-color: #000000;
+    border-top: 1px solid var(--border-color);
 }
 
 .about-section h2 {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: var(--primary-color);
-    margin-bottom: 2rem;
-    letter-spacing: 2px;
+    margin-bottom: 3rem;
+    letter-spacing: 1px;
+    font-weight: 700;
 }
 
 .about-content {
@@ -445,10 +458,10 @@ body {
 
 .about-content p {
     text-align: center;
-    color: #cccccc;
+    color: var(--text-muted);
     font-size: 1.1rem;
     margin-bottom: 3rem;
-    line-height: 1.8;
+    line-height: 1.9;
 }
 
 .stats {
@@ -458,15 +471,15 @@ body {
 }
 
 .stat-card {
-    background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+    background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
     padding: 2rem;
-    border: 2px solid var(--primary-color);
+    border: 1px solid var(--border-color);
     text-align: center;
     transition: all 0.3s ease;
 }
 
 .stat-card:hover {
-    box-shadow: 0 0 20px rgba(232, 232, 232, 0.2);
+    border-color: var(--primary-color);
     transform: translateY(-5px);
 }
 
@@ -477,22 +490,23 @@ body {
 }
 
 .stat-card p {
-    color: #999999;
+    color: var(--text-muted);
 }
 
 /* ========== CONTACT SECTION ========== */
 .contact-section {
-    padding: 4rem 2rem;
-    background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
-    border-top: 2px solid var(--primary-color);
+    padding: 6rem 2rem;
+    background-color: #000000;
+    border-top: 1px solid var(--border-color);
 }
 
 .contact-section h2 {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: var(--primary-color);
-    margin-bottom: 2rem;
-    letter-spacing: 2px;
+    margin-bottom: 3rem;
+    letter-spacing: 1px;
+    font-weight: 700;
 }
 
 .contact-container {
@@ -512,8 +526,8 @@ body {
 .contact-form input,
 .contact-form textarea {
     padding: 1rem;
-    background-color: #1a1a1a;
-    border: 2px solid var(--primary-color);
+    background-color: var(--accent-color);
+    border: 1px solid var(--border-color);
     color: var(--text-color);
     font-family: inherit;
     transition: all 0.3s ease;
@@ -522,7 +536,8 @@ body {
 .contact-form input:focus,
 .contact-form textarea:focus {
     outline: none;
-    box-shadow: 0 0 15px rgba(232, 232, 232, 0.3);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .submit-button {
@@ -530,13 +545,15 @@ body {
     background: var(--primary-color);
     color: #000000;
     border: 2px solid var(--primary-color);
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .submit-button:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
     background: transparent;
     color: var(--primary-color);
 }
@@ -545,48 +562,42 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .social-icon {
     display: block;
     padding: 1rem;
-    background-color: #1a1a1a;
-    border: 2px solid var(--primary-color);
+    background-color: var(--accent-color);
+    border: 1px solid var(--border-color);
     color: var(--primary-color);
     text-decoration: none;
     text-align: center;
     transition: all 0.3s ease;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
 }
 
 .social-icon:hover {
     background-color: var(--primary-color);
     color: #000000;
+    border-color: var(--primary-color);
 }
 
 /* ========== FOOTER ========== */
 .footer {
     background-color: #000000;
-    border-top: 2px solid var(--primary-color);
-    padding: 2rem;
+    border-top: 1px solid var(--border-color);
+    padding: 3rem 2rem;
     text-align: center;
-    color: #666666;
+    color: var(--text-muted);
+    font-size: 0.9rem;
 }
 
 /* ========== RESPONSIVE DESIGN ========== */
 @media (max-width: 768px) {
-    .gta-logo {
-        font-size: 3.5rem;
-    }
-
-    .hero-content h2 {
-        font-size: 2rem;
-    }
-
-    .hero-content p {
-        font-size: 1.1rem;
-    }
-
     .nav-menu {
         display: none;
     }
@@ -595,45 +606,60 @@ body {
         display: flex;
     }
 
-    .modpack-container {
-        grid-template-columns: 1fr;
+    .hero-content h2 {
+        font-size: 2rem;
     }
 
-    .modpack-features {
-        grid-template-columns: 1fr;
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .section-header h2 {
+        font-size: 2rem;
+    }
+
+    .project-card {
+        padding: 1.5rem;
     }
 
     .contact-container {
         grid-template-columns: 1fr;
     }
 
-    .modpack-icon {
-        font-size: 8rem;
-    }
-
     .gallery-item {
-        min-width: 200px;
-        height: 150px;
+        min-width: 250px;
+        height: 200px;
     }
 }
 
 @media (max-width: 480px) {
-    .gta-logo {
-        font-size: 2.5rem;
-        letter-spacing: 4px;
+    .nav-logo-text {
+        font-size: 1rem;
     }
 
     .hero-content h2 {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
 
-    .section-subtitle {
+    .hero-content p {
         font-size: 0.9rem;
     }
 
+    .section-header h2 {
+        font-size: 1.5rem;
+    }
+
     .gallery-item {
-        min-width: 150px;
-        height: 100px;
+        min-width: 180px;
+        height: 150px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-logo-img {
+        height: 40px;
     }
 }
     </style>
@@ -643,7 +669,7 @@ body {
     <div id="splashScreen" class="splash-screen">
         <div class="splash-container">
             <div class="logo-wrapper">
-                <h1 class="gta-logo">MDF STUDIOS</h1>
+                <img id="logoImage" class="gta-logo" alt="MDF Studios Logo" src="">
             </div>
         </div>
     </div>
@@ -651,11 +677,14 @@ body {
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">MDF STUDIOS</div>
+            <div class="nav-logo-section">
+                <img id="navLogoImage" class="nav-logo-img" alt="MDF Studios" src="">
+                <div class="nav-logo-text">MDF STUDIOS</div>
+            </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#gallery" class="nav-link">Gallery</a></li>
-                <li><a href="#modpack" class="nav-link">Modpack</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
@@ -672,11 +701,49 @@ body {
         <div class="hero-content">
             <h2>Welcome to MDF Studios</h2>
             <p>Crafting Premium Gaming Experiences</p>
-            <a href="#modpack" class="cta-button">Download Modpack</a>
+            <a href="#projects" class="cta-button">Explore Projects</a>
         </div>
     </section>
 
-    <!-- Gallery Section with Bidirectional Scroll -->
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="section-header">
+            <h2>Our Projects</h2>
+            <p>Carefully crafted modpacks and gaming content designed for the community</p>
+        </div>
+        
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>MDF Modpack</h3>
+                <p>A comprehensive modpack featuring enhanced graphics, optimized performance, and carefully selected quality mods for the ultimate gaming experience.</p>
+                <div class="project-meta">
+                    <span class="project-tag">Active</span>
+                    <span class="project-tag">Latest</span>
+                </div>
+                <a href="#" class="project-button">Learn More</a>
+            </div>
+
+            <div class="project-card">
+                <h3>Coming Soon</h3>
+                <p>More exciting projects are in development. Stay tuned for announcements and updates about upcoming releases from MDF Studios.</p>
+                <div class="project-meta">
+                    <span class="project-tag">In Development</span>
+                </div>
+                <a href="#contact" class="project-button">Notify Me</a>
+            </div>
+
+            <div class="project-card">
+                <h3>Community</h3>
+                <p>Join our thriving community of gamers and modders. Connect with other players, share your creations, and be part of something special.</p>
+                <div class="project-meta">
+                    <span class="project-tag">Community</span>
+                </div>
+                <a href="#contact" class="project-button">Join Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
     <section id="gallery" class="gallery-section">
         <h2>In-Game Screenshots</h2>
         <p class="section-subtitle">Explore our creative works</p>
@@ -696,49 +763,15 @@ body {
         </div>
     </section>
 
-    <!-- Modpack Section -->
-    <section id="modpack" class="modpack-section">
-        <div class="modpack-container">
-            <div class="modpack-content">
-                <h2>MDF Studios Modpack</h2>
-                <p>Experience gaming like never before with our curated modpack featuring premium content and optimized performance.</p>
-                <div class="modpack-features">
-                    <div class="feature-card">
-                        <h3>🎮 Enhanced Graphics</h3>
-                        <p>Stunning visual overhauls and shaders</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>⚡ Optimized Performance</h3>
-                        <p>Runs smoothly even on mid-range hardware</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>🛠️ Quality Mods</h3>
-                        <p>Carefully selected and tested mods</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>📦 Easy Installation</h3>
-                        <p>One-click installation process</p>
-                    </div>
-                </div>
-                <div class="download-section">
-                    <a href="https://www.patreon.com" target="_blank" class="download-button">Download from Patreon</a>
-                    <p class="version-info">Current Version: 1.0.0 | Last Updated: 2026-06-14</p>
-                </div>
-            </div>
-            <div class="modpack-visual">
-                <div class="modpack-icon">📦</div>
-            </div>
-        </div>
-    </section>
-
     <!-- About Section -->
     <section id="about" class="about-section">
         <h2>About MDF Studios</h2>
         <div class="about-content">
             <p>
                 MDF Studios is dedicated to creating high-quality content for the gaming community. 
-                Our modpack represents months of development, testing, and refinement to bring you 
-                the ultimate gaming experience.
+                With a focus on innovation and excellence, we develop modpacks and gaming experiences 
+                that push the boundaries of what's possible. Our team is passionate about bringing 
+                the best to our players.
             </p>
             <div class="stats">
                 <div class="stat-card">
@@ -747,11 +780,11 @@ body {
                 </div>
                 <div class="stat-card">
                     <h3>10K+</h3>
-                    <p>Active Users</p>
+                    <p>Active Players</p>
                 </div>
                 <div class="stat-card">
                     <h3>100%</h3>
-                    <p>Security Verified</p>
+                    <p>Quality Verified</p>
                 </div>
             </div>
         </div>
@@ -764,25 +797,36 @@ body {
             <form class="contact-form" id="contactForm">
                 <input type="text" placeholder="Your Name" required>
                 <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <textarea placeholder="Your Message" rows="6" required></textarea>
                 <button type="submit" class="submit-button">Send Message</button>
             </form>
             <div class="social-links">
                 <a href="#" class="social-icon">Discord</a>
-                <a href="#" class="social-icon">Twitter</a>
+                <a href="#" class="social-icon">Twitter / X</a>
                 <a href="#" class="social-icon">YouTube</a>
+                <a href="#" class="social-icon">Patreon</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2026 MDF Studios. All rights reserved. | Secure & Private</p>
+        <p>&copy; 2026 MDF Studios. All rights reserved. | Secure & Professional</p>
     </footer>
 
     <script>
-// Initialize website on load
+// LOGO IMAGE CONFIGURATION
+// Replace these URLs with your actual logo image URLs
+const LOGO_URL = '/path/to/your/logo.png'; // Update this path to your logo
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Set logo images
+    const logoImage = document.getElementById('logoImage');
+    const navLogoImage = document.getElementById('navLogoImage');
+    
+    logoImage.src = LOGO_URL;
+    navLogoImage.src = LOGO_URL;
+    
     initSplashScreen();
     initGallery();
     initNavigation();
@@ -794,7 +838,6 @@ document.addEventListener('DOMContentLoaded', function() {
 function initSplashScreen() {
     const splashScreen = document.getElementById('splashScreen');
     
-    // Add fade-out animation after 3.5 seconds
     setTimeout(() => {
         splashScreen.classList.add('fade-out-sequence');
         setTimeout(() => {
@@ -802,7 +845,6 @@ function initSplashScreen() {
         }, 1000);
     }, 2500);
     
-    // Allow click to skip splash screen
     splashScreen.addEventListener('click', () => {
         splashScreen.classList.add('fade-out-sequence');
         setTimeout(() => {
@@ -816,20 +858,17 @@ function initGallery() {
     const track1 = document.getElementById('track1');
     const track2 = document.getElementById('track2');
     
-    // Sample gallery images - replace with actual image URLs
     const galleryImages = [
-        { url: 'https://via.placeholder.com/300x250/1a1a1a/e8e8e8?text=Screenshot+1', title: 'Beautiful Landscape' },
-        { url: 'https://via.placeholder.com/300x250/1a1a1a/e8e8e8?text=Screenshot+2', title: 'Urban Design' },
-        { url: 'https://via.placeholder.com/300x250/1a1a1a/e8e8e8?text=Screenshot+3', title: 'Nature Vibes' },
-        { url: 'https://via.placeholder.com/300x250/1a1a1a/e8e8e8?text=Screenshot+4', title: 'Epic Moments' },
-        { url: 'https://via.placeholder.com/300x250/1a1a1a/e8e8e8?text=Screenshot+5', title: 'Creative Build' },
-        { url: 'https://via.placeholder.com/300x250/1a1a1a/e8e8e8?text=Screenshot+6', title: 'Adventure Time' },
+        { url: 'https://via.placeholder.com/320x280/1a1a1a/ffffff?text=Screenshot+1', title: 'Landscape' },
+        { url: 'https://via.placeholder.com/320x280/1a1a1a/ffffff?text=Screenshot+2', title: 'Design' },
+        { url: 'https://via.placeholder.com/320x280/1a1a1a/ffffff?text=Screenshot+3', title: 'Nature' },
+        { url: 'https://via.placeholder.com/320x280/1a1a1a/ffffff?text=Screenshot+4', title: 'Epic' },
+        { url: 'https://via.placeholder.com/320x280/1a1a1a/ffffff?text=Screenshot+5', title: 'Build' },
+        { url: 'https://via.placeholder.com/320x280/1a1a1a/ffffff?text=Screenshot+6', title: 'Adventure' },
     ];
     
-    // Duplicate images for infinite scroll effect
     const doubledImages = [...galleryImages, ...galleryImages];
     
-    // Populate tracks
     doubledImages.forEach(image => {
         const item = createGalleryItem(image);
         track1.appendChild(item.cloneNode(true));
@@ -895,20 +934,20 @@ function initContactForm() {
 
 function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
-    notification.className = `notification ${type}`;
     notification.textContent = message;
     notification.style.cssText = `
         position: fixed;
         top: 20px;
         right: 20px;
         padding: 1rem 2rem;
-        background-color: ${type === 'success' ? '#e8e8e8' : '#1a1a1a'};
-        color: ${type === 'success' ? '#000000' : '#e8e8e8'};
-        border: 2px solid #e8e8e8;
+        background-color: ${type === 'success' ? '#ffffff' : '#1a1a1a'};
+        color: ${type === 'success' ? '#000000' : '#ffffff'};
+        border: 1px solid #ffffff;
         border-radius: 0;
         z-index: 10000;
         animation: slideIn 0.3s ease;
-        font-weight: bold;
+        font-weight: 600;
+        letter-spacing: 0.5px;
     `;
     
     document.body.appendChild(notification);
@@ -935,7 +974,7 @@ function initScrollAnimations() {
         });
     }, observerOptions);
     
-    document.querySelectorAll('.feature-card, .stat-card, section h2').forEach(el => {
+    document.querySelectorAll('.project-card, .stat-card, section h2').forEach(el => {
         observer.observe(el);
     });
 }
