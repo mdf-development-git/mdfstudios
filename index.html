@@ -1182,7 +1182,6 @@ body.nav-open {
     }
 }
 
-/* Large screens - ensure no hamburger visibility */
 @media (min-width: 769px) {
     .hamburger {
         display: none !important;
@@ -1603,7 +1602,6 @@ body.nav-open {
                 link.addEventListener('click', (e) => {
                     const targetId = link.getAttribute('href').substring(1);
                     
-                    // Handle Contact link to scroll to footer
                     if (targetId === 'contact') {
                         e.preventDefault();
                         const footer = document.querySelector('.footer');
@@ -1651,7 +1649,6 @@ body.nav-open {
             navObserverTargets.forEach(item => navObserver.observe(item.el));
             setActiveNav('home');
 
-            // CTA button smooth scroll to projects
             const ctaButton = document.querySelector('.cta-button');
             if (ctaButton) {
                 ctaButton.addEventListener('click', (e) => {
