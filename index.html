@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDF Studios - Modding Excellence</title>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #00ff00;
+    --secondary-color: #1a1a1a;
+    --accent-color: #ff6600;
+    --text-color: #ffffff;
+    --border-color: #333333;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* SPLASH SCREEN - GTA 6 STYLE */
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeOut 3.5s ease-in-out forwards;
+}
+
+.splash-screen.hidden {
+    display: none;
+}
+
+.splash-container {
+    text-align: center;
+}
+
+.logo-wrapper {
+    position: relative;
+    margin-bottom: 60px;
+}
+
+.gta-logo {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 4rem;
+    color: #ffffff;
+    text-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.8),
+        0 0 40px rgba(0, 255, 0, 0.6),
+        0 0 60px rgba(255, 100, 0, 0.4);
+    animation: glitch 0.8s infinite, scaleIn 1s ease-out;
+    letter-spacing: 3px;
+}
+
+.logo-glow {
+    position: absolute;
+    width: 500px;
+    height: 150px;
+    background: radial-gradient(ellipse at center, rgba(0, 255, 0, 0.3) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(40px);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.loading-bar {
+    width: 300px;
+    height: 10px;
+    background-color: #333333;
+    border: 2px solid #00ff00;
+    margin: 0 auto 30px;
+    overflow: hidden;
+}
+
+.loading-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #00ff00, #ffaa00);
+    animation: loading 3s ease-in-out forwards;
+}
+
+.loading-text {
+    font-family: 'Arial', monospace;
+    font-size: 1rem;
+    color: #00ff00;
+    letter-spacing: 2px;
+    animation: blink 1s infinite;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+    95% {
+        opacity: 1;
+        visibility: visible;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes glitch {
+    0% {
+        text-shadow: 
+            0 0 20px rgba(255, 255, 255, 0.8),
+            0 0 40px rgba(0, 255, 0, 0.6),
+            -2px 0 #ff00ff,
+            2px 0 #00ffff;
+    }
+    50% {
+        text-shadow: 
+            0 0 20px rgba(255, 255, 255, 0.8),
+            0 0 40px rgba(0, 255, 0, 0.6),
+            2px 0 #ff00ff,
+            -2px 0 #00ffff;
+    }
+    100% {
+        text-shadow: 
+            0 0 20px rgba(255, 255, 255, 0.8),
+            0 0 40px rgba(0, 255, 0, 0.6),
+            -2px 0 #ff00ff,
+            2px 0 #00ffff;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
+
+@keyframes loading {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    0%, 49% {
+        opacity: 1;
+    }
+    50%, 100% {
+        opacity: 0.3;
+    }
+}
+
+/* NAVIGATION */
+.navbar {
+    background-color: rgba(26, 26, 26, 0.95);
+    border-bottom: 2px solid var(--primary-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+/* HERO SECTION */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.4);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-content h2 {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+    color: var(--primary-color);
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: #000000;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    border-radius: 5px;
+}
+
+.cta-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 40px rgba(0, 255, 0, 0.8);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* GALLERY SECTION */
+.gallery-section {
+    padding: 4rem 2rem;
+    background-color: #0a0a0a;
+    border-top: 2px solid var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.gallery-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #888888;
+    margin-bottom: 3rem;
+}
+
+.gallery-row {
+    margin-bottom: 3rem;
+    overflow: hidden;
+}
+
+.gallery-track {
+    display: flex;
+    gap: 1.5rem;
+    animation: scrollLeft 20s linear infinite;
+}
+
+.gallery-row.right-to-left .gallery-track {
+    animation: scrollRight 20s linear infinite;
+}
+
+.gallery-item {
+    min-width: 300px;
+    height: 250px;
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-item-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-item-overlay {
+    opacity: 1;
+}
+
+.gallery-item-overlay p {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+@keyframes scrollLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes scrollRight {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* MODPACK SECTION */
+.modpack-section {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+}
+
+.modpack-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.modpack-content h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.modpack-content p {
+    color: #cccccc;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.modpack-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.feature-card {
+    background-color: #1a1a1a;
+    padding: 1.5rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+    transform: translateY(-5px);
+}
+
+.feature-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+    color: #999999;
+    font-size: 0.95rem;
+}
+
+.download-section {
+    margin-top: 2rem;
+}
+
+.download-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    margin-right: 1rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: #000000;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+    border-radius: 5px;
+}
+
+.download-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.6);
+}
+
+.version-info {
+    color: #666666;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+.modpack-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modpack-icon {
+    font-size: 15rem;
+    opacity: 0.8;
+    filter: drop-shadow(0 0 30px rgba(0, 255, 0, 0.3));
+}
+
+/* ABOUT SECTION */
+.about-section {
+    padding: 4rem 2rem;
+    background-color: #1a1a1a;
+    border-top: 2px solid var(--primary-color);
+}
+
+.about-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.about-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.about-content p {
+    text-align: center;
+    color: #cccccc;
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+    padding: 2rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    transform: translateY(-5px);
+}
+
+.stat-card h3 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.stat-card p {
+    color: #999999;
+}
+
+/* CONTACT SECTION */
+.contact-section {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+    border-top: 2px solid var(--primary-color);
+}
+
+.contact-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.contact-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 1rem;
+    background-color: #1a1a1a;
+    border: 2px solid var(--primary-color);
+    color: var(--text-color);
+    border-radius: 5px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+}
+
+.submit-button {
+    padding: 1rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+}
+
+.submit-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.6);
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.social-icon {
+    display: block;
+    padding: 1rem;
+    background-color: #1a1a1a;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: var(--primary-color);
+    color: #000000;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+}
+
+/* FOOTER */
+.footer {
+    background-color: #000000;
+    border-top: 2px solid var(--primary-color);
+    padding: 2rem;
+    text-align: center;
+    color: #666666;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .gta-logo {
+        font-size: 2.5rem;
+    }
+
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+
+    .nav-menu {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .modpack-container {
+        grid-template-columns: 1fr;
+    }
+
+    .modpack-features {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .modpack-icon {
+        font-size: 8rem;
+    }
+
+    .gallery-item {
+        min-width: 200px;
+        height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gta-logo {
+        font-size: 1.8rem;
+    }
+
+    .hero-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .gallery-item {
+        min-width: 150px;
+        height: 100px;
+    }
+}
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- GTA 6 Style Splash Screen -->
+    <div id="splashScreen" class="splash-screen">
+        <div class="splash-container">
+            <div class="logo-wrapper">
+                <h1 class="gta-logo">MDF STUDIOS</h1>
+                <div class="logo-glow"></div>
+            </div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p class="loading-text">INITIALIZING...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">MDF STUDIOS</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#modpack" class="nav-link">Modpack</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>Welcome to MDF Studios</h2>
+            <p>Crafting Premium Gaming Experiences</p>
+            <a href="#modpack" class="cta-button">Download Modpack</a>
+        </div>
+    </section>
+
+    <!-- Gallery Section with Bidirectional Scroll -->
+    <section id="gallery" class="gallery-section">
+        <h2>In-Game Screenshots</h2>
+        <p class="section-subtitle">Explore our creative works</p>
+        
+        <!-- Left-to-Right Scroll -->
+        <div class="gallery-row left-to-right">
+            <div class="gallery-track" id="track1">
+                <!-- Images will be loaded dynamically -->
+            </div>
+        </div>
+
+        <!-- Right-to-Left Scroll -->
+        <div class="gallery-row right-to-left">
+            <div class="gallery-track" id="track2">
+                <!-- Images will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Modpack Section -->
+    <section id="modpack" class="modpack-section">
+        <div class="modpack-container">
+            <div class="modpack-content">
+                <h2>MDF Studios Modpack</h2>
+                <p>Experience gaming like never before with our curated modpack featuring premium content and optimized performance.</p>
+                <div class="modpack-features">
+                    <div class="feature-card">
+                        <h3>🎮 Enhanced Graphics</h3>
+                        <p>Stunning visual overhauls and shaders</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>⚡ Optimized Performance</h3>
+                        <p>Runs smoothly even on mid-range hardware</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🛠️ Quality Mods</h3>
+                        <p>Carefully selected and tested mods</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📦 Easy Installation</h3>
+                        <p>One-click installation process</p>
+                    </div>
+                </div>
+                <div class="download-section">
+                    <a href="https://www.patreon.com" target="_blank" class="download-button primary">Download from Patreon</a>
+                    <p class="version-info">Current Version: 1.0.0 | Last Updated: 2026-06-14</p>
+                </div>
+            </div>
+            <div class="modpack-visual">
+                <div class="modpack-icon">📦</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <h2>About MDF Studios</h2>
+        <div class="about-content">
+            <p>
+                MDF Studios is dedicated to creating high-quality content for the gaming community. 
+                Our modpack represents months of development, testing, and refinement to bring you 
+                the ultimate gaming experience.
+            </p>
+            <div class="stats">
+                <div class="stat-card">
+                    <h3>50+</h3>
+                    <p>Curated Mods</p>
+                </div>
+                <div class="stat-card">
+                    <h3>10K+</h3>
+                    <p>Active Users</p>
+                </div>
+                <div class="stat-card">
+                    <h3>100%</h3>
+                    <p>Security Verified</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2>Get in Touch</h2>
+        <div class="contact-container">
+            <form class="contact-form" id="contactForm">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit" class="submit-button">Send Message</button>
+            </form>
+            <div class="social-links">
+                <a href="#" class="social-icon">Discord</a>
+                <a href="#" class="social-icon">Twitter</a>
+                <a href="#" class="social-icon">YouTube</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 MDF Studios. All rights reserved. | Secure & Private</p>
+    </footer>
+
+    <script>
+// Initialize website on load
+document.addEventListener('DOMContentLoaded', function() {
+    initSplashScreen();
+    initGallery();
+    initNavigation();
+    initContactForm();
+    initScrollAnimations();
+});
+
+// SPLASH SCREEN INITIALIZATION
+function initSplashScreen() {
+    const splashScreen = document.getElementById('splashScreen');
+    
+    // Auto-hide splash screen after 3.5 seconds
+    setTimeout(() => {
+        splashScreen.classList.add('hidden');
+    }, 3500);
+    
+    // Allow click to skip splash screen
+    splashScreen.addEventListener('click', () => {
+        splashScreen.classList.add('hidden');
+    });
+}
+
+// GALLERY INITIALIZATION
+function initGallery() {
+    const track1 = document.getElementById('track1');
+    const track2 = document.getElementById('track2');
+    
+    // Sample gallery images - replace with actual image URLs
+    const galleryImages = [
+        { url: 'https://via.placeholder.com/300x250/1a1a1a/00ff00?text=Screenshot+1', title: 'Beautiful Landscape' },
+        { url: 'https://via.placeholder.com/300x250/1a1a1a/00ff00?text=Screenshot+2', title: 'Urban Design' },
+        { url: 'https://via.placeholder.com/300x250/1a1a1a/00ff00?text=Screenshot+3', title: 'Nature Vibes' },
+        { url: 'https://via.placeholder.com/300x250/1a1a1a/00ff00?text=Screenshot+4', title: 'Epic Moments' },
+        { url: 'https://via.placeholder.com/300x250/1a1a1a/00ff00?text=Screenshot+5', title: 'Creative Build' },
+        { url: 'https://via.placeholder.com/300x250/1a1a1a/00ff00?text=Screenshot+6', title: 'Adventure Time' },
+    ];
+    
+    // Duplicate images for infinite scroll effect
+    const doubledImages = [...galleryImages, ...galleryImages];
+    
+    // Populate tracks
+    doubledImages.forEach(image => {
+        const item = createGalleryItem(image);
+        track1.appendChild(item.cloneNode(true));
+        track2.appendChild(item.cloneNode(true));
+    });
+}
+
+function createGalleryItem(imageData) {
+    const item = document.createElement('div');
+    item.className = 'gallery-item';
+    item.innerHTML = `
+        <img src="${imageData.url}" alt="${imageData.title}">
+        <div class="gallery-item-overlay">
+            <p>${imageData.title}</p>
+        </div>
+    `;
+    return item;
+}
+
+// NAVIGATION
+function initNavigation() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    // Hamburger menu toggle
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+    
+    // Smooth scrolling for navigation links
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+            
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+                navMenu.classList.remove('active');
+            }
+        });
+    });
+}
+
+// CONTACT FORM
+function initContactForm() {
+    const contactForm = document.getElementById('contactForm');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            
+            // Send email (implement backend endpoint)
+            console.log('Form submitted:', {
+                name: contactForm.querySelector('input[type="text"]').value,
+                email: contactForm.querySelector('input[type="email"]').value,
+                message: contactForm.querySelector('textarea').value
+            });
+            
+            // Show success message
+            showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
+            contactForm.reset();
+        });
+    }
+}
+
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 1rem 2rem;
+        background-color: ${type === 'success' ? '#00ff00' : '#ff6600'};
+        color: #000000;
+        border-radius: 5px;
+        z-index: 10000;
+        animation: slideIn 0.3s ease;
+        font-weight: bold;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+
+// SCROLL ANIMATIONS
+function initScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animation = 'fadeInUp 0.6s ease-out';
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    // Observe all section headings and cards
+    document.querySelectorAll('.feature-card, .stat-card, section h2').forEach(el => {
+        observer.observe(el);
+    });
+}
+
+// LAZY LOAD IMAGES
+function lazyLoadImages() {
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.add('loaded');
+                    observer.unobserve(img);
+                }
+            });
+        });
+        
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+        });
+    }
+}
+
+// GALLERY MANAGEMENT HELPER
+function addScreenshot(imageUrl, title = 'New Screenshot') {
+    const track1 = document.getElementById('track1');
+    const track2 = document.getElementById('track2');
+    
+    const newItem = createGalleryItem({ url: imageUrl, title: title });
+    
+    track1.appendChild(newItem.cloneNode(true));
+    track2.appendChild(newItem.cloneNode(true));
+}
+
+// SECURITY: Prevent XSS attacks on form inputs
+function sanitizeInput(input) {
+    const div = document.createElement('div');
+    div.textContent = input;
+    return div.innerHTML;
+}
+
+// Add animation styles dynamically
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from {
+            transform: translateX(400px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideOut {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(400px);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
+    </script>
+</body>
+</html>
