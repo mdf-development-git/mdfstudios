@@ -355,23 +355,34 @@ body {
     font-size: 1.1rem;
 }
 
+.gallery-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
 .gallery-row {
     margin-bottom: 3rem;
     overflow: hidden;
+    position: relative;
 }
 
 .gallery-track {
     display: flex;
     gap: 2rem;
-    animation: scrollLeft 30s linear infinite;
+    will-change: transform;
+}
+
+.gallery-row.left-to-right .gallery-track {
+    animation: scrollLeftSmooth 40s linear infinite;
 }
 
 .gallery-row.right-to-left .gallery-track {
-    animation: scrollRight 30s linear infinite;
+    animation: scrollRightSmooth 40s linear infinite;
 }
 
 .gallery-item {
-    min-width: 320px;
+    flex-shrink: 0;
+    width: 320px;
     height: 280px;
     background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
     border: 1px solid var(--border-color);
@@ -417,18 +428,18 @@ body {
     font-weight: 600;
 }
 
-@keyframes scrollLeft {
+@keyframes scrollLeftSmooth {
     0% {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-100%);
+        transform: translateX(calc(-100% / 2));
     }
 }
 
-@keyframes scrollRight {
+@keyframes scrollRightSmooth {
     0% {
-        transform: translateX(-100%);
+        transform: translateX(calc(-100% / 2));
     }
     100% {
         transform: translateX(0);
@@ -627,7 +638,7 @@ body {
     }
 
     .gallery-item {
-        min-width: 250px;
+        width: 250px;
         height: 200px;
     }
 }
@@ -650,8 +661,8 @@ body {
     }
 
     .gallery-item {
-        min-width: 180px;
-        height: 150px;
+        width: 200px;
+        height: 160px;
     }
 
     .projects-grid {
@@ -748,17 +759,19 @@ body {
         <h2>In-Game Screenshots</h2>
         <p class="section-subtitle">Explore our creative works</p>
         
-        <!-- Left-to-Right Scroll -->
-        <div class="gallery-row left-to-right">
-            <div class="gallery-track" id="track1">
-                <!-- Images will be loaded dynamically -->
+        <div class="gallery-container">
+            <!-- Left-to-Right Scroll -->
+            <div class="gallery-row left-to-right">
+                <div class="gallery-track" id="track1">
+                    <!-- Images will be loaded dynamically -->
+                </div>
             </div>
-        </div>
 
-        <!-- Right-to-Left Scroll -->
-        <div class="gallery-row right-to-left">
-            <div class="gallery-track" id="track2">
-                <!-- Images will be loaded dynamically -->
+            <!-- Right-to-Left Scroll -->
+            <div class="gallery-row right-to-left">
+                <div class="gallery-track" id="track2">
+                    <!-- Images will be loaded dynamically -->
+                </div>
             </div>
         </div>
     </section>
@@ -815,10 +828,22 @@ body {
     </footer>
 
     <script>
-// LOGO IMAGE CONFIGURATION
-// Replace these URLs with your actual logo image URLs
-const LOGO_URL = '/path/to/your/logo.png'; // Update this path to your logo
+// ========== CONFIGURATION ==========
+// LOGO URL - Update this with your logo image URL
+const LOGO_URL = '/path/to/your/logo.png';
 
+// GALLERY IMAGES - Update this with your image URLs
+// You can add as many images as you want, they will loop infinitely
+const GALLERY_IMAGES = [
+    { url: 'https://via.placeholder.com/320x280/1a1a1a/ffffff?text=Screenshot+1', title: 'Landscape' },
+    { url: 'https://via.placeholder.com/320x280/1a1a1a/ffffff?text=Screenshot+2', title: 'Design' },
+    { url: 'https://via.placeholder.com/320x280/1a1a1a/ffffff?text=Screenshot+3', title: 'Nature' },
+    { url: 'https://via.placeholder.com/320x280/1a1a1a/ffffff?text=Screenshot+4', title: 'Epic' },
+    { url: 'https://via.placeholder.com/320x280/1a1a1a/ffffff?text=Screenshot+5', title: 'Build' },
+    { url: 'https://via.placeholder.com/320x280/1a1a1a/ffffff?text=Screenshot+6', title: 'Adventure' },
+];
+
+// ========== INITIALIZATION ==========
 document.addEventListener('DOMContentLoaded', function() {
     // Set logo images
     const logoImage = document.getElementById('logoImage');
@@ -853,39 +878,33 @@ function initSplashScreen() {
     });
 }
 
-// GALLERY INITIALIZATION
+// GALLERY INITIALIZATION - Fixed smooth infinite scroll
 function initGallery() {
     const track1 = document.getElementById('track1');
     const track2 = document.getElementById('track2');
     
-    const galleryImages = [
-        { url: 'https://via.placeholder.com/320x280/1a1a1a/ffffff?text=Screenshot+1', title: 'Landscape' },
-        { url: 'https://via.placeholder.com/320x280/1a1a1a/ffffff?text=Screenshot+2', title: 'Design' },
-        { url: 'https://via.placeholder.com/320x280/1a1a1a/ffffff?text=Screenshot+3', title: 'Nature' },
-        { url: 'https://via.placeholder.com/320x280/1a1a1a/ffffff?text=Screenshot+4', title: 'Epic' },
-        { url: 'https://via.placeholder.com/320x280/1a1a1a/ffffff?text=Screenshot+5', title: 'Build' },
-        { url: 'https://via.placeholder.com/320x280/1a1a1a/ffffff?text=Screenshot+6', title: 'Adventure' },
-    ];
+    // Create gallery items - duplicated to prevent gap when looping
+    const createGalleryItems = () => {
+        let html = '';
+        // Add items twice to create seamless loop
+        for (let i = 0; i < 2; i++) {
+            GALLERY_IMAGES.forEach(image => {
+                html += `
+                    <div class="gallery-item">
+                        <img src="${image.url}" alt="${image.title}" loading="lazy">
+                        <div class="gallery-item-overlay">
+                            <p>${image.title}</p>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        return html;
+    };
     
-    const doubledImages = [...galleryImages, ...galleryImages];
-    
-    doubledImages.forEach(image => {
-        const item = createGalleryItem(image);
-        track1.appendChild(item.cloneNode(true));
-        track2.appendChild(item.cloneNode(true));
-    });
-}
-
-function createGalleryItem(imageData) {
-    const item = document.createElement('div');
-    item.className = 'gallery-item';
-    item.innerHTML = `
-        <img src="${imageData.url}" alt="${imageData.title}">
-        <div class="gallery-item-overlay">
-            <p>${imageData.title}</p>
-        </div>
-    `;
-    return item;
+    const itemsHTML = createGalleryItems();
+    track1.innerHTML = itemsHTML;
+    track2.innerHTML = itemsHTML;
 }
 
 // NAVIGATION
@@ -1008,13 +1027,9 @@ document.head.appendChild(style);
 
 // GALLERY MANAGEMENT FUNCTION
 function addScreenshot(imageUrl, title = 'New Screenshot') {
-    const track1 = document.getElementById('track1');
-    const track2 = document.getElementById('track2');
-    
-    const newItem = createGalleryItem({ url: imageUrl, title: title });
-    
-    track1.appendChild(newItem.cloneNode(true));
-    track2.appendChild(newItem.cloneNode(true));
+    GALLERY_IMAGES.push({ url: imageUrl, title: title });
+    // Reinitialize gallery with new image
+    initGallery();
 }
     </script>
 </body>
