@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MDF Studios - Professional Gaming Studio</title>
+    <title>MDF Studios</title>
     <style>
 * {
     margin: 0;
@@ -127,13 +127,6 @@ body {
     height: 50px;
     width: auto;
     object-fit: contain;
-}
-
-.nav-logo-text {
-    font-size: 1.3rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--primary-color);
 }
 
 .nav-menu {
@@ -275,6 +268,11 @@ body {
     padding: 2rem;
     transition: all 0.3s ease;
     cursor: pointer;
+    opacity: 0;
+}
+
+.project-card.animate {
+    animation: fadeInUp 0.6s ease-out forwards;
 }
 
 .project-card:hover {
@@ -487,6 +485,11 @@ body {
     border: 1px solid var(--border-color);
     text-align: center;
     transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.stat-card.animate {
+    animation: fadeInUp 0.6s ease-out forwards;
 }
 
 .stat-card:hover {
@@ -644,10 +647,6 @@ body {
 }
 
 @media (max-width: 480px) {
-    .nav-logo-text {
-        font-size: 1rem;
-    }
-
     .hero-content h2 {
         font-size: 1.8rem;
     }
@@ -680,7 +679,7 @@ body {
     <div id="splashScreen" class="splash-screen">
         <div class="splash-container">
             <div class="logo-wrapper">
-                <img id="logoImage" class="gta-logo" alt="MDF Studios Logo" src="">
+                <img id="logoImage" class="gta-logo" alt="MDF Studios" src="">
             </div>
         </div>
     </div>
@@ -690,7 +689,6 @@ body {
         <div class="nav-container">
             <div class="nav-logo-section">
                 <img id="navLogoImage" class="nav-logo-img" alt="MDF Studios" src="">
-                <div class="nav-logo-text">MDF STUDIOS</div>
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
@@ -824,7 +822,7 @@ body {
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2026 MDF Studios. All rights reserved. | Secure & Professional</p>
+        <p id="copyright"></p>
     </footer>
 
     <script>
@@ -833,7 +831,6 @@ body {
 const LOGO_URL = '/path/to/your/logo.png';
 
 // GALLERY IMAGES - Update this with your image URLs
-// You can add as many images as you want, they will loop infinitely
 const GALLERY_IMAGES = [
     { url: 'https://via.placeholder.com/320x280/1a1a1a/ffffff?text=Screenshot+1', title: 'Landscape' },
     { url: 'https://via.placeholder.com/320x280/1a1a1a/ffffff?text=Screenshot+2', title: 'Design' },
@@ -851,6 +848,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     logoImage.src = LOGO_URL;
     navLogoImage.src = LOGO_URL;
+    
+    // Set copyright year
+    const currentYear = new Date().getFullYear();
+    document.getElementById('copyright').textContent = `© ${currentYear} MDF Studios. All rights reserved.`;
     
     initSplashScreen();
     initGallery();
@@ -977,7 +978,7 @@ function showNotification(message, type = 'info') {
     }, 3000);
 }
 
-// SCROLL ANIMATIONS
+// SCROLL ANIMATIONS - Load only once on scroll
 function initScrollAnimations() {
     const observerOptions = {
         threshold: 0.1,
@@ -986,14 +987,14 @@ function initScrollAnimations() {
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.animation = 'fadeInUp 0.6s ease-out';
+            if (entry.isIntersecting && !entry.target.classList.contains('animate')) {
+                entry.target.classList.add('animate');
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
     
-    document.querySelectorAll('.project-card, .stat-card, section h2').forEach(el => {
+    document.querySelectorAll('.project-card, .stat-card').forEach(el => {
         observer.observe(el);
     });
 }
