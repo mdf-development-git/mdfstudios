@@ -37,7 +37,7 @@ Unauthorized use may result in appropriate action being taken by MDF Studios.
 
 ![Q&A](assets/Q&A.gif)
 
-## Legal
+## Footer
 
 ![Legal](assets/Footer.png)
 
