@@ -21,8 +21,8 @@ Unauthorized use may result in appropriate action being taken by MDF Studios.
 
 ## Legal
 
-- **[Privacy Policy](ca://s?q=Open_Privacy_Policy)**  
-- **[Terms of Service](ca://s?q=Open_Terms_of_Service)**  
+- [Privacy Policy](https://mdf-development-git.github.io/mdfstudios/legal/Privacy%20Policy.pdf)
+- [Terms of Service](https://mdf-development-git.github.io/mdfstudios/legal/Terms%20of%20Service.pdf)
 
 ---
 
