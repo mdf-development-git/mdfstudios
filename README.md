@@ -31,11 +31,11 @@ Unauthorized use may result in appropriate action being taken by MDF Studios.
 
 ## Gallery
 
-![Gallery](assets/Gallery.mp4)
+![Gallery](assets/Gallery.gif)
 
 ## Q&A
 
-![Q&A](assets/Q&A.mp4)
+![Q&A](assets/Q&A.gif)
 
 ## Legal
 
