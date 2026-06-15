@@ -19,6 +19,30 @@ Unauthorized use may result in appropriate action being taken by MDF Studios.
 
 ---
 
+## Website Showcase
+
+## Homepage
+
+![Homepage](assets/Home.png)
+
+## Projects
+
+![Projects](assets/Projects.png)
+
+## Gallery
+
+![Gallery](assets/Gallery.mp4)
+
+## Q&A
+
+![Q&A](assets/Q&A.mp4)
+
+## Legal
+
+![Legal](assets/Footer.png)
+
+---
+
 ## Legal
 
 - [Privacy Policy](https://mdf-development-git.github.io/mdfstudios/legal/Privacy%20Policy.pdf)
