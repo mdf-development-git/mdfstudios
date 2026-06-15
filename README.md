@@ -7,12 +7,22 @@ All content, structure, and design elements are the intellectual property of MDF
 
 ---
 
-<h2 align="center">Usage & Restrictions</h2>
+## Usage & Restrictions
 
-<p align="center">
-You are strictly prohibited from copying, redistributing, modifying, or reusing any part of this website’s code or design.<br>
-Unauthorized use will result in appropriate action being taken by MDF Studios.
-</p>
+You are strictly prohibited from:
+
+- Copying, redistributing, modifying, or reusing any part of this website’s code or design  
+- Claiming ownership of MDF Studios assets or branding  
+- Using any part of this repository for commercial or unauthorized purposes  
+
+Unauthorized use may result in appropriate action being taken by MDF Studios.
+
+---
+
+## Legal
+
+- **[Privacy Policy](ca://s?q=Open_Privacy_Policy)**  
+- **[Terms of Service](ca://s?q=Open_Terms_of_Service)**  
 
 ---
 
