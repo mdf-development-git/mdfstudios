@@ -50,6 +50,6 @@ Unauthorized use may result in appropriate action being taken by MDF Studios.
 
 ---
 
-Join our - [Discord](https://dsc.gg/mdfstudios) for more information about [MDF Studios](https://github.com/mdf-development-git)!
+Join our [Discord](https://dsc.gg/mdfstudios) for more information about [MDF Studios](https://github.com/mdf-development-git)!
 
 <h3 align="center">© 2026 MDF Studios. All rights reserved.</h3>
